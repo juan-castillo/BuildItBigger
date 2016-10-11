@@ -7,8 +7,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.udacity.gradle.builditbigger.asynctask.FetchJokeTask;
 import com.udacity.gradle.jokedisplay.JokeActivity;
-import com.udacity.gradle.jokes.Joker;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -43,11 +43,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void tellJoke(View view) {
-        String joke = new Joker().getJoke();
-
-        Intent intent = new Intent(this, JokeActivity.class);
-        intent.putExtra(JokeActivity.JOKE_KEY, joke);
-        startActivity(intent);
+        new FetchJokeTask() {
+            @Override
+            protected void onPostExecute(String joke) {
+                System.out.println("In onPostExecute, joke: " + joke);
+                Intent intent = new Intent(getApplicationContext(), JokeActivity.class);
+                intent.putExtra(JokeActivity.JOKE_KEY, joke);
+                startActivity(intent);
+            }
+        }.execute();
     }
 
 }

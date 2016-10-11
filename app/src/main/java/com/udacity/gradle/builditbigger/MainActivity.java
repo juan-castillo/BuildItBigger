@@ -7,6 +7,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.udacity.gradle.jokes.Joker;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -40,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void tellJoke(View view) {
-        Toast.makeText(this, getString(R.string.joke_toast), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, new Joker().getJoke(), Toast.LENGTH_SHORT).show();
     }
 
 }

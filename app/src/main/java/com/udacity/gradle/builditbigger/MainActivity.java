@@ -46,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
         new FetchJokeTask() {
             @Override
             protected void onPostExecute(String joke) {
-                System.out.println("In onPostExecute, joke: " + joke);
                 Intent intent = new Intent(getApplicationContext(), JokeActivity.class);
                 intent.putExtra(JokeActivity.JOKE_KEY, joke);
                 startActivity(intent);
